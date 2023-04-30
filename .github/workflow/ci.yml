@@ -1,4 +1,4 @@
-name: Converter CI Process
+name: bookmark-search CI Process
 run-name: ${{ github.actor }} is running CI workflow 
 on:
   pull_request:
