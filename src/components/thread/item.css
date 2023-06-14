@@ -1,0 +1,45 @@
+.thread-items-container {
+    @apply visible;
+}
+
+.thread-items-container .semi-list-item {
+    @apply flex flex-row flex-nowrap;
+    @apply h-16 w-full text-left bg-white hover:bg-slate-50;
+    padding: 2px 4px 2px 4px;
+}
+
+/* NOTE: semi-list-item-body 默认布局是 flex: 1 1, 但这里不需要它伸缩，所以需要进行覆盖 */
+.thread-items-container .semi-list-item .semi-list-item-body {
+    @apply h-full flex flex-row grow-0 shrink-0 basis-4/5 truncate;
+}
+
+.thread-items-container .semi-list-item .semi-list-item-body .semi-list-item-body-header {
+    @apply h-full flex grow-0 shrink-0;
+    flex-basis: 5%;
+    margin-top: 1px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.thread-items-container .semi-list-item .semi-list-item-body .semi-list-item-body-main {
+    @apply h-full flex flex-col grow-0 shrink truncate;
+    flex-basis: 95%;
+}
+
+.thread-items-container .semi-list-item .semi-list-item-extra {
+    @apply h-full flex flex-row-reverse grow-0 shrink-0;
+    flex-basis: 15%;
+    margin-left: 10px;
+}
+
+.thread-items-container .semi-list-item .semi-list-item-extra .semi-button-group {
+    @apply flex flex-row flex-nowrap justify-center items-center grow-0 shrink-0;
+}
+
+.thread-item-edit-modal .semi-modal {
+    @apply h-52 w-96
+}
+
+.thread-item-delete-modal .semi-modal {
+    @apply h-52 w-96
+}

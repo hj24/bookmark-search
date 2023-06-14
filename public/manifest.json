@@ -1,9 +1,11 @@
 {
   "name": "bookmark-search",
   "description": "Get the bookmark you want.",
-  "version": "0.1.0",
+  "version": "0.9.0",
   "manifest_version": 3,
-  "permissions": [],
+  "permissions": [
+    "bookmarks"
+  ],
   "icons": {
     "16": "icon/icon16.png",
     "48": "icon/icon48.png",
