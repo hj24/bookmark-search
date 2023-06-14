@@ -1,2 +1,4 @@
 # bookmark-search
-A chrome extension for searching your bookmarks.
+A chrome extension for searching and manage your bookmarks.
+
+
