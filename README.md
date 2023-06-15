@@ -1,4 +1,6 @@
 # bookmark-search
+> Install here -> [link](https://chrome.google.com/webstore/detail/bookmark-search/dhnahdpjgnphiglnbijfoafjdokkbclk)
+
 A chrome extension for searching and manage your bookmarks.
 ![main](assests/bookmark-search-main.jpg)
 ![item](assests/bookmark-search-item.jpg)
