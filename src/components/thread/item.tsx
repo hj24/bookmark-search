@@ -1,10 +1,11 @@
 import React, {useRef, useState} from 'react';
 import {assign, createMachine} from 'xstate';
 import {useMachine} from '@xstate/react';
-import {Button, ButtonGroup, Input, List, Modal, Toast, Tooltip} from '@douyinfe/semi-ui';
-import {IconBookmark, IconDelete, IconEdit, IconUndo, IconTick} from '@douyinfe/semi-icons';
+import {Button, ButtonGroup, Icon, Input, List, Modal, Toast, Tooltip} from '@douyinfe/semi-ui';
+import {IconDeleteStroked, IconEditStroked, IconUndo, IconTick} from '@douyinfe/semi-icons';
 import {Logger} from '../../utils/log';
 import './item.css';
+import SvgBookmark from '../icons/Bookmark';
 
 const logger = new Logger('bs.components.thread.item');
 
@@ -244,7 +245,8 @@ export const ThreadItem: React.FC<Props> = (props: Props) => {
                 className="semi-list-item"
                 header={
                     <div className="semi-list-item-body-header">
-                        <IconBookmark size="large" />
+                        {/* //<IconBookmark size="large" /> */}
+                        <Icon svg={<SvgBookmark width={20} height={20} />} />
                     </div>
                 }
                 main={
@@ -268,19 +270,19 @@ export const ThreadItem: React.FC<Props> = (props: Props) => {
                         {state.value === 'editing' ? (
                             <ButtonGroup theme="borderless" className="semi-button-group">
                                 <Button onClick={onEditDone}>
-                                    <IconTick className="text-black" size="small" />
+                                    <IconTick className="text-black" size="default" />
                                 </Button>
                                 <Button onClick={onEditUndo}>
-                                    <IconUndo className="text-black" size="small" />
+                                    <IconUndo className="text-black" size="default" />
                                 </Button>
                             </ButtonGroup>
                         ) : (
                             <ButtonGroup theme="borderless" className="semi-button-group">
                                 <Button onClick={onEdit}>
-                                    <IconEdit className="text-black" size="small" />
+                                    <IconEditStroked className="text-black" size="default" />
                                 </Button>
                                 <Button onClick={onDelete}>
-                                    <IconDelete className="text-black" size="small" />
+                                    <IconDeleteStroked className="text-black" size="default" />
                                 </Button>
                             </ButtonGroup>
                         )}

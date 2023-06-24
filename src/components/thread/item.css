@@ -15,21 +15,19 @@
 
 .thread-items-container .semi-list-item .semi-list-item-body .semi-list-item-body-header {
     @apply h-full flex grow-0 shrink-0;
-    flex-basis: 5%;
-    margin-top: 1px;
-    margin-left: 5px;
-    margin-right: 5px;
+    flex-basis: 4%;
+    @apply mt-px ml-1 mr-1;
 }
 
 .thread-items-container .semi-list-item .semi-list-item-body .semi-list-item-body-main {
     @apply h-full flex flex-col grow-0 shrink truncate;
-    flex-basis: 95%;
+    flex-basis: 96%;
 }
 
 .thread-items-container .semi-list-item .semi-list-item-extra {
     @apply h-full flex flex-row-reverse grow-0 shrink-0;
+    @apply ml-1.5;
     flex-basis: 15%;
-    margin-left: 10px;
 }
 
 .thread-items-container .semi-list-item .semi-list-item-extra .semi-button-group {

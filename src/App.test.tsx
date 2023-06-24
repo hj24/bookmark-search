@@ -14,6 +14,18 @@ jest.mock('./components/icons/Bulleye', () => {
     };
 });
 
+jest.mock('./components/icons/Bookmark', () => {
+    return {
+        __esModule: true,
+        SvgBookmark: () => {
+            return <div></div>;
+        },
+        default: () => {
+            return <div></div>;
+        },
+    };
+});
+
 jest.mock('@douyinfe/semi-ui/lib/es/locale/source/en_GB', () => {
     return {
         __esModule: true,
