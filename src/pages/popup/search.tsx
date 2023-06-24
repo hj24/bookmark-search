@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Divider, Input, List, Spin, Toast} from '@douyinfe/semi-ui';
-import {IconChevronDown, IconSearch} from '@douyinfe/semi-icons';
+import {IconChevronDownStroked, IconSearch} from '@douyinfe/semi-icons';
 import InfiniteScroll from 'react-infinite-scroller';
 import {Bookmark, ThreadItem} from '../../components/thread/item';
 import {Logger} from '../../utils/log';
@@ -204,7 +204,7 @@ const Search: React.FC = () => {
                     lineHeight: '32px',
                 }}>
                 <Button onClick={threadFetchData} style={{background: 'transparent'}}>
-                    <IconChevronDown size="extra-large" style={{color: 'black'}} />
+                    <IconChevronDownStroked size="extra-large" style={{color: 'black'}} />
                 </Button>
             </div>
         ) : null;

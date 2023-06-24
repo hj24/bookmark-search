@@ -5,6 +5,20 @@
 }
 
 .App-header {
-  display: flex;
-  flex-direction: row;
+  @apply flex flex-col justify-center items-center;
+  @apply bg-green-500;
+}
+
+.App-header-main {
+  @apply flex flex-row justify-center items-center;
+  @apply text-white;
+}
+
+.App-header-extra {
+  @apply flex flex-row justify-center items-baseline;
+  @apply mt-1 mb-1;
+}
+
+.App-body {
+  @apply mt-3 mx-1 my-1;
 }
