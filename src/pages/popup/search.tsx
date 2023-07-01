@@ -15,7 +15,6 @@ const CTX_SEARCH = 1;
 
 const Search: React.FC = () => {
     const [query, setQuery] = useState('');
-    const [searchLoading, setSearchLoading] = useState(false);
     // 搜索结果相关
     const [recent, setRecent] = useState<Bookmark[]>([]);
     const [search, setSearch] = useState<Bookmark[]>([]);
@@ -77,8 +76,21 @@ const Search: React.FC = () => {
         };
     }, []);
 
-    const onChange = (val: string, e: React.ChangeEvent<HTMLInputElement>) => {
+    // NOTE: onChange 输入为空时，正常 setQuery 但不进行搜索，在按回车时清空降级处理
+    const onChange = async (val: string, e: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(val);
+
+        logger.info(`on input change: ${val}`);
+
+        const trimedQuery = val.trim();
+
+        if (trimedQuery.length === 0) {
+            return;
+        }
+
+        preSearch();
+        await promiseSearch(trimedQuery);
+        postSearch();
     };
 
     const clearThread = (clearRecent: boolean, clearSearch: boolean) => {
@@ -102,7 +114,6 @@ const Search: React.FC = () => {
     const preSearch = () => {
         logger.info('pre search start');
         setThreadContext(CTX_SEARCH);
-        setSearchLoading(true);
         clearThread(false, true);
         setThreadHint(HINT_SEARCH_RESULTS);
         logger.info('pre search completed');
@@ -112,7 +123,7 @@ const Search: React.FC = () => {
     // 1. 结束 loading
     const postSearch = () => {
         logger.info('post search start');
-        setSearchLoading(false);
+        // PLACEHOLDER
         logger.info('post search completed');
     };
 
@@ -153,13 +164,14 @@ const Search: React.FC = () => {
 
         preSearch();
 
-        // NOTE: 输入为空，并且进行搜索时，降级为展示最近添加
+        // NOTE: 输入为空，并且按回车搜索时，清空输入并降级为展示最近添加
         if (query.trim() === '') {
             logger.warning('empty search content');
             Toast.warning({
                 content: 'Empty input',
                 duration: 3,
             });
+            setQuery('');
             setThreadContext(CTX_RECENT_ADDED);
             setThreadHint(HINT_RECENT_ADDED);
             setThreadSource(recent);
@@ -290,8 +302,9 @@ const Search: React.FC = () => {
             <div className="search-input">
                 <Input
                     size="large"
-                    prefix={searchLoading ? <Spin /> : <IconSearch />}
+                    prefix={<IconSearch />}
                     showClear
+                    value={query}
                     onChange={onChange}
                     onEnterPress={onEnterPress}></Input>
             </div>
