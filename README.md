@@ -6,6 +6,10 @@ A chrome extension for searching and manage your bookmarks.
 ![item](assests/bookmark-search-item-new.jpg)
 
 ## Release
+### v1.2.0
+- Description: support shortcut (Ctrl/Command + Shift + S) to open extension popup
+- PR: https://github.com/hj24/bookmark-search/pull/13
+
 ### v1.1.0
 - Description: support real time search on input change
 - PR: https://github.com/hj24/bookmark-search/pull/8
