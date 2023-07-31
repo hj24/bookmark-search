@@ -41,3 +41,8 @@
 .thread-item-delete-modal .semi-modal {
     @apply h-52 w-96
 }
+
+.thread-item-context-menu {
+    @apply absolute z-50 rounded-md text-white;
+    background-color: #656267;
+}
