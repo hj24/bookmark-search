@@ -4,6 +4,7 @@ import {IconChevronDownStroked, IconSearch} from '@douyinfe/semi-icons';
 import InfiniteScroll from 'react-infinite-scroller';
 import {Bookmark, ThreadItem} from '../../components/thread/item';
 import {Logger} from '../../utils/log';
+import {isFolder} from '../../utils/bookmark';
 import './search.css';
 
 const logger = new Logger('bs.pages.popup.search');
@@ -34,7 +35,8 @@ const Search: React.FC = () => {
                 chrome.bookmarks.getRecent(DEFAULT_PAGE_NUMBER, (res: chrome.bookmarks.BookmarkTreeNode[]) => {
                     const recentAdded: Bookmark[] = [];
                     res.forEach((val, ...args) => {
-                        if (val.dateGroupModified) {
+                        // NOTE: 最近添加结果过滤 folder
+                        if (isFolder(val)) {
                             return;
                         }
                         recentAdded.push({
@@ -133,7 +135,8 @@ const Search: React.FC = () => {
                 chrome.bookmarks.search(query.trim(), (res: chrome.bookmarks.BookmarkTreeNode[]) => {
                     const searchResults: Bookmark[] = [];
                     res.forEach((val, ...args) => {
-                        if (val.dateGroupModified) {
+                        // NOTE: 搜索结果过滤 folder
+                        if (isFolder(val)) {
                             return;
                         }
                         searchResults.push({
