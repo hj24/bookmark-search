@@ -1,4 +1,4 @@
-name: bookmark-search CI Process
+name: CI
 run-name: ${{ github.actor }} is running CI workflow 
 on:
   pull_request:
