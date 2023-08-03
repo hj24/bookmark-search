@@ -1,4 +1,9 @@
 # bookmark-search
+![version](https://img.shields.io/github/package-json/v/hj24/bookmark-search/main)
+![license](https://img.shields.io/github/license/hj24/bookmark-search)
+![language](https://img.shields.io/badge/language-Typescript-007ACC.svg)
+[![ci](https://github.com/hj24/bookmark-search/actions/workflows/ci.yml/badge.svg)](https://github.com/hj24/bookmark-search/actions)
+
 An extension for searching and manage your bookmarks.
 > Bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and [semi.design](https://semi.design/zh-CN)
 
