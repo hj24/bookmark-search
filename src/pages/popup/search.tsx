@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Button, Divider, Input, List, Spin, Toast} from '@douyinfe/semi-ui';
 import {IconChevronDownStroked, IconSearch} from '@douyinfe/semi-icons';
 import InfiniteScroll from 'react-infinite-scroller';
@@ -15,7 +15,9 @@ const CTX_RECENT_ADDED = 0;
 const CTX_SEARCH = 1;
 
 const Search: React.FC = () => {
+    // 输入相关
     const [query, setQuery] = useState('');
+    const inputRef = useRef<HTMLInputElement>(null);
     // 搜索结果相关
     const [recent, setRecent] = useState<Bookmark[]>([]);
     const [search, setSearch] = useState<Bookmark[]>([]);
@@ -65,6 +67,8 @@ const Search: React.FC = () => {
 
     // NOTE: 这里 useEffect 第二个参数传空，当 componentDidMount 使用
     useEffect(() => {
+        inputRef.current?.focus();
+
         // NOTE: 加载组件时加载最近添加的书签，并设置 thread 数据源
         // 但不在这里加载数据到真正的 thread 中，而是在 InfiniteScroll 中通过 initialLoad 去调用加载 thread 的方法
         const loadInitialData = async () => {
@@ -304,6 +308,7 @@ const Search: React.FC = () => {
         <div className="search flex flex-col">
             <div className="search-input">
                 <Input
+                    ref={inputRef}
                     size="large"
                     prefix={<IconSearch />}
                     showClear
