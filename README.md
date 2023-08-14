@@ -22,32 +22,15 @@ Install in Chrome Web Store directly: [link](https://chrome.google.com/webstore/
 ![item](assests/bookmark-search-item-new.jpg)
 
 ## Release
-### v1.2.2
-- Description: optmize doc
-- PR: https://github.com/hj24/bookmark-search/pull/16
-
-### v1.2.1
-- Description: fix bug, filter folder correctly for imported bookmarks
-- Issue: https://github.com/hj24/bookmark-search/issues/9
-- PR: https://github.com/hj24/bookmark-search/pull/15
-
-### v1.2.0
-- Description: support shortcut (Ctrl/Command + Shift + S) to open extension popup
-- Issue: https://github.com/hj24/bookmark-search/issues/12
-- PR: https://github.com/hj24/bookmark-search/pull/13
-
-### v1.1.0
-- Description: support real time search on input change
-- Issue: https://github.com/hj24/bookmark-search/issues/10
-- PR: https://github.com/hj24/bookmark-search/pull/8
-
-### v1.0.0
-- Description: Refactor UI theme
-- PR: https://github.com/hj24/bookmark-search/pull/7
-
-### v0.9.0
-- Description: Initial features, white-black theme
-- PR: https://github.com/hj24/bookmark-search/pull/4
+| Version | Description | PR | Note |
+| ------ | ------ | ------ | ------ |
+| v1.3.0 | auto focus input after initial load | https://github.com/hj24/bookmark-search/pull/17 ||
+| v1.2.2 | optmize doc | https://github.com/hj24/bookmark-search/pull/16 ||
+| v1.2.1 | fix bug, filter folder correctly for imported bookmarks | https://github.com/hj24/bookmark-search/pull/15 | Issue: https://github.com/hj24/bookmark-search/issues/9 |
+| v1.2.0 | support shortcut (Ctrl/Command + Shift + S) to open extension popup | https://github.com/hj24/bookmark-search/pull/13 | Issue: https://github.com/hj24/bookmark-search/issues/12 |
+| v1.1.0 | support real time search on input change | https://github.com/hj24/bookmark-search/pull/8 | Issue: https://github.com/hj24/bookmark-search/issues/10 |
+| v1.0.0 | refactor UI theme | https://github.com/hj24/bookmark-search/pull/7 ||
+| v0.9.0 | initial features, white-black theme | https://github.com/hj24/bookmark-search/pull/4 ||
 
 ## Development
 1. `yarn fixlint`
