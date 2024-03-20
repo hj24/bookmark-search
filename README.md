@@ -15,7 +15,7 @@ Install in Chrome Web Store directly: [link](https://chromewebstore.google.com/d
 > Refer to [Microsoft official doc](https://support.microsoft.com/en-us/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-9c0ec68c-2fbc-2f2c-9ff0-bdc76f46b026) 
 1. In Edge, go to the [Chrome Web Store](https://chromewebstore.google.com/detail/bookmark-search/dhnahdpjgnphiglnbijfoafjdokkbclk) .
 2. Select Allow extensions from other stores in the banner at the top of the page, then select Allow to confirm.
-3. Go to [bookmark-search install page](https://chrome.google.com/webstore/detail/bookmark-search/dhnahdpjgnphiglnbijfoafjdokkbclk) and select Add to Chrome.
+3. Go to [bookmark-search install page](https://chromewebstore.google.com/detail/bookmark-search/dhnahdpjgnphiglnbijfoafjdokkbclk) and select Add to Chrome.
 
 ## Overview
 ![main](assests/bookmark-search-main-new.jpg)
