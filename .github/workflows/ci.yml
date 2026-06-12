@@ -13,7 +13,7 @@ jobs:
     - name: setup nodejs
       uses: actions/setup-node@v3
       with:
-        node-version: '16.16.x'
+        node-version: '20.x'
     - name: Install yarn
       run: npm install -g yarn
     - name: Check lint
@@ -31,7 +31,7 @@ jobs:
     - name: setup nodejs
       uses: actions/setup-node@v3
       with:
-        node-version: '16.16.x'
+        node-version: '20.x'
     - name: Install yarn
       run: npm install -g yarn
     - name: Run unittest
