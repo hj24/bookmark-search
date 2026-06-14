@@ -18,9 +18,9 @@ const Search: React.FC = () => {
     // 输入相关
     const [query, setQuery] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
+    const latestQueryRef = useRef('');
     // 搜索结果相关
     const [recent, setRecent] = useState<Bookmark[]>([]);
-    const [search, setSearch] = useState<Bookmark[]>([]);
     // thread 相关
     const [threadSource, setThreadSource] = useState<Bookmark[]>([]);
     const [thread, setThread] = useState<Bookmark[]>([]);
@@ -36,7 +36,7 @@ const Search: React.FC = () => {
             try {
                 chrome.bookmarks.getRecent(DEFAULT_PAGE_NUMBER, (res: chrome.bookmarks.BookmarkTreeNode[]) => {
                     const recentAdded: Bookmark[] = [];
-                    res.forEach((val, ...args) => {
+                    res.forEach(val => {
                         // NOTE: 最近添加结果过滤 folder
                         if (isFolder(val)) {
                             return;
@@ -78,13 +78,14 @@ const Search: React.FC = () => {
         loadInitialData();
 
         return () => {
-            clearThread(true, true);
+            clearThread(true);
         };
     }, []);
 
     // NOTE: onChange 输入为空时，正常 setQuery 但不进行搜索，在按回车时清空降级处理
-    const onChange = async (val: string, e: React.ChangeEvent<HTMLInputElement>) => {
+    const onChange = async (val: string) => {
         setQuery(val);
+        latestQueryRef.current = val;
 
         logger.info(`on input change: ${val}`);
 
@@ -99,18 +100,24 @@ const Search: React.FC = () => {
         postSearch();
     };
 
-    const clearThread = (clearRecent: boolean, clearSearch: boolean) => {
+    const clearThread = (clearRecent: boolean) => {
         if (clearRecent) {
             setRecent([]);
-        }
-        if (clearSearch) {
-            setSearch([]);
         }
         setThread([]);
         setThreadCursor(0);
         setThreadSource([]);
         setThreadLoading(false);
         setThreadFetchCnt(0);
+    };
+
+    const resetToRecentAdded = () => {
+        latestQueryRef.current = '';
+        setQuery('');
+        setThreadContext(CTX_RECENT_ADDED);
+        clearThread(false);
+        setThreadHint(HINT_RECENT_ADDED);
+        setThreadSource(recent);
     };
 
     // NOTE 搜索前置步骤:
@@ -120,7 +127,7 @@ const Search: React.FC = () => {
     const preSearch = () => {
         logger.info('pre search start');
         setThreadContext(CTX_SEARCH);
-        clearThread(false, true);
+        clearThread(false);
         setThreadHint(HINT_SEARCH_RESULTS);
         logger.info('pre search completed');
     };
@@ -134,11 +141,17 @@ const Search: React.FC = () => {
     };
 
     const promiseSearch = (query: string) => {
+        const normalizedQuery = query.trim();
         return new Promise((resolve, reject) => {
             try {
-                chrome.bookmarks.search(query.trim(), (res: chrome.bookmarks.BookmarkTreeNode[]) => {
+                chrome.bookmarks.search(normalizedQuery, (res: chrome.bookmarks.BookmarkTreeNode[]) => {
+                    if (latestQueryRef.current.trim() !== normalizedQuery) {
+                        logger.info(`ignore stale search results: ${normalizedQuery}`);
+                        resolve([]);
+                        return;
+                    }
                     const searchResults: Bookmark[] = [];
-                    res.forEach((val, ...args) => {
+                    res.forEach(val => {
                         // NOTE: 搜索结果过滤 folder
                         if (isFolder(val)) {
                             return;
@@ -150,7 +163,6 @@ const Search: React.FC = () => {
                             url: val.url ? val.url : '',
                         });
                     });
-                    setSearch(searchResults);
                     setThreadSource(searchResults);
                     logger.debug('promiseSearch results: ', searchResults);
                     resolve(searchResults);
@@ -166,22 +178,19 @@ const Search: React.FC = () => {
         });
     };
 
-    const onEnterPress = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const onEnterPress = async () => {
         logger.info(`on input enter press: ${query}`);
 
         preSearch();
 
         // NOTE: 输入为空，并且按回车搜索时，清空输入并降级为展示最近添加
         if (query.trim() === '') {
-            logger.warning('empty search content');
+            logger.info('empty search content');
             Toast.warning({
                 content: 'Empty input',
                 duration: 3,
             });
-            setQuery('');
-            setThreadContext(CTX_RECENT_ADDED);
-            setThreadHint(HINT_RECENT_ADDED);
-            setThreadSource(recent);
+            resetToRecentAdded();
             postSearch();
             return;
         }
@@ -304,6 +313,11 @@ const Search: React.FC = () => {
         return <ThreadItem item={item} localId={ind} deleteCallback={deleteBookmark} updateCallback={updateBookmark} />;
     };
 
+    const onClear = () => {
+        logger.info('clear search input');
+        resetToRecentAdded();
+    };
+
     return (
         <div className="search flex flex-col">
             <div className="search-input">
@@ -314,6 +328,7 @@ const Search: React.FC = () => {
                     showClear
                     value={query}
                     onChange={onChange}
+                    onClear={onClear}
                     onEnterPress={onEnterPress}></Input>
             </div>
             <Divider margin="12px" align="center">
