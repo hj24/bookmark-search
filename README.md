@@ -24,7 +24,8 @@ Install in Chrome Web Store directly: [link](https://chromewebstore.google.com/d
 ## Release
 | Version | Description | PR | Note |
 | ------ | ------ | ------ | ------ |
-| v1.3.1 | fixed some security issue | https://github.com/hj24/bookmark-search/pull/19 ||
+| v1.3.2 | fixed some security issues & clear input bug | https://github.com/hj24/bookmark-search/pull/20 ||
+| v1.3.1 | fixed some security issues | https://github.com/hj24/bookmark-search/pull/19 ||
 | v1.3.0 | auto focus input after initial load | https://github.com/hj24/bookmark-search/pull/17 ||
 | v1.2.2 | optmize doc | https://github.com/hj24/bookmark-search/pull/16 ||
 | v1.2.1 | fix bug, filter folder correctly for imported bookmarks | https://github.com/hj24/bookmark-search/pull/15 | Issue: https://github.com/hj24/bookmark-search/issues/9 |
