@@ -21,6 +21,11 @@ Install in Chrome Web Store directly: [link](https://chromewebstore.google.com/d
 ![main](assests/bookmark-search-main-new.jpg)
 ![item](assests/bookmark-search-item-new.jpg)
 
+## Support
+The yellow **Sponsor project** button with a gift icon sits beside GitHub below the popup title and opens the Waffo Pancake payment page in a new tab.
+
+Header links and their destinations are maintained in `src/components/header/links.tsx`, independently of bookmark search and editing. The payment URL uses the production checkout for a one-time payment in USD.
+
 ## Release
 | Version | Description | PR | Note |
 | ------ | ------ | ------ | ------ |

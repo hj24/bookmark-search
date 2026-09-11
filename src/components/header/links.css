@@ -1,0 +1,41 @@
+.header-links {
+    @apply flex items-center justify-center gap-3 mt-1 mb-3;
+}
+
+.header-links a {
+    @apply inline-flex items-center justify-center h-7 rounded-md no-underline;
+}
+
+.header-links a:focus-visible {
+    outline: 2px solid #111827;
+    outline-offset: 2px;
+}
+
+.header-links-github {
+    @apply w-6 text-white;
+}
+
+.header-links-github:hover,
+.header-links-github:focus-visible {
+    @apply text-black;
+}
+
+.header-links-divider {
+    @apply h-5;
+    width: 1px;
+    background-color: rgb(255 255 255 / 35%);
+}
+
+.header-links-support {
+    @apply gap-2 px-3 text-xs font-semibold whitespace-nowrap;
+    color: #111827;
+    background-color: #ffdd00;
+}
+
+.header-links-support:hover {
+    background-color: #f5d400;
+}
+
+.header-links-support:active {
+    background-color: #ebc900;
+}

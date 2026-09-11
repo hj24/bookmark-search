@@ -1,17 +1,14 @@
-import React, {useState} from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import {Icon, Typography, LocaleProvider} from '@douyinfe/semi-ui';
 import en_GB from '@douyinfe/semi-ui/lib/es/locale/source/en_GB';
-import {IconGithubLogo} from '@douyinfe/semi-icons';
 import Search from './pages/popup/search';
 import './App.css';
 import SvgBulleye from './components/icons/Bulleye';
+import HeaderLinks from './components/header/links';
 
 const {Title} = Typography;
 
 const App = () => {
-    const [githubLogoColor, setGithubLogoColor] = useState('text-white');
-
     return (
         <LocaleProvider locale={en_GB}>
             <div className="App">
@@ -23,21 +20,7 @@ const App = () => {
                             <div className="text-white">Search Bookmarks</div>
                         </Title>
                     </div>
-                    <div className="App-header-extra">
-                        <IconGithubLogo
-                            className={githubLogoColor}
-                            size="default"
-                            onMouseOver={() => {
-                                setGithubLogoColor('text-black');
-                            }}
-                            onMouseLeave={() => {
-                                setGithubLogoColor('text-white');
-                            }}
-                            onClick={() => {
-                                window.open('https://github.com/hj24/bookmark-search', '_blank');
-                            }}
-                        />
-                    </div>
+                    <HeaderLinks />
                 </div>
                 <div className="App-body">
                     <Search />
