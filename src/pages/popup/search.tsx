@@ -9,7 +9,7 @@ import './search.css';
 
 const logger = new Logger('bs.pages.popup.search');
 const DEFAULT_PAGE_NUMBER = 5;
-const HINT_RECENT_ADDED = 'Recent Added';
+const HINT_RECENT_ADDED = 'Recently added';
 const HINT_SEARCH_RESULTS = 'Search Results';
 const CTX_RECENT_ADDED = 0;
 const CTX_SEARCH = 1;

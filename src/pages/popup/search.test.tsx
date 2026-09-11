@@ -118,7 +118,7 @@ describe('Search clear behavior', () => {
         jest.clearAllMocks();
     });
 
-    test('clicking showClear resets the current search back to Recent Added', async () => {
+    test('clicking showClear resets the current search back to Recently added', async () => {
         mockChromeBookmarks(jest.fn((_query, callback) => callback(searchBookmarks)));
 
         render(<Search />);
@@ -134,13 +134,13 @@ describe('Search clear behavior', () => {
         fireEvent.mouseDown(screen.getByLabelText('clear search'));
 
         await waitFor(() => expect(input).toHaveValue(''));
-        expect(screen.getByText('Recent Added')).toBeInTheDocument();
+        expect(screen.getByText('Recently added')).toBeInTheDocument();
         expect(screen.getByText('Recent One')).toBeInTheDocument();
         expect(screen.queryByText('Search One')).not.toBeInTheDocument();
         expect((global as any).chrome.bookmarks.getRecent).toHaveBeenCalledTimes(1);
     });
 
-    test('late search results are ignored after showClear resets to Recent Added', async () => {
+    test('late search results are ignored after showClear resets to Recently added', async () => {
         let resolveSearch: ((items: typeof searchBookmarks) => void) | undefined;
         mockChromeBookmarks(
             jest.fn((_query, callback) => {
@@ -160,7 +160,7 @@ describe('Search clear behavior', () => {
         );
         fireEvent.mouseDown(screen.getByLabelText('clear search'));
 
-        await waitFor(() => expect(screen.getByText('Recent Added')).toBeInTheDocument());
+        await waitFor(() => expect(screen.getByText('Recently added')).toBeInTheDocument());
 
         act(() => {
             resolveSearch?.(searchBookmarks);
@@ -168,7 +168,7 @@ describe('Search clear behavior', () => {
 
         await waitFor(() => expect(screen.queryByText('Search One')).not.toBeInTheDocument());
         expect(input).toHaveValue('');
-        expect(screen.getByText('Recent Added')).toBeInTheDocument();
+        expect(screen.getByText('Recently added')).toBeInTheDocument();
         expect(screen.getByText('Recent One')).toBeInTheDocument();
     });
 });

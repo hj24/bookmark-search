@@ -6,17 +6,12 @@
 
 .App-header {
   @apply flex flex-col justify-center items-center;
-  @apply bg-green-500;
+  @apply bg-green-600;
 }
 
 .App-header-main {
   @apply flex flex-row justify-center items-center;
   @apply text-white;
-}
-
-.App-header-extra {
-  @apply flex flex-row justify-center items-baseline;
-  @apply mt-1 mb-1;
 }
 
 .App-body {
